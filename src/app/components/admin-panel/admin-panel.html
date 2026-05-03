@@ -1,0 +1,66 @@
+<div class="room-container">
+
+  <div class="card">
+
+    <h2>Crear habitación</h2>
+    <p class="subtitle">Panel de administrador</p>
+
+    <form (ngSubmit)="onSubmit()" #roomForm="ngForm">
+
+      <!-- Hotel ID -->
+      <div class="form-group">
+        <label>Hotel ID</label>
+        <input
+          type="number"
+          name="hotelId"
+          [(ngModel)]="hotelId"
+          required
+          placeholder="Ej: 1"
+        />
+      </div>
+
+      <!-- Nombre -->
+      <div class="form-group">
+        <label>Nombre</label>
+        <input
+          type="text"
+          name="name"
+          [(ngModel)]="room.name"
+          required
+          placeholder="Suite Deluxe"
+        />
+      </div>
+
+      <!-- Precio -->
+      <div class="form-group">
+        <label>Precio</label>
+        <input
+          type="number"
+          name="price"
+          [(ngModel)]="room.price"
+          required
+          placeholder="100"
+        />
+      </div>
+
+      <!-- Capacidad -->
+      <div class="form-group">
+        <label>Capacidad</label>
+        <input
+          type="number"
+          name="capacity"
+          [(ngModel)]="room.capacity"
+          required
+          placeholder="2"
+        />
+      </div>
+
+      <button type="submit" [disabled]="roomForm.invalid">
+        Crear habitación
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
