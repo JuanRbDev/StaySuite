@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { LoginRequest } from '../../interfaces/LoginRequest';
 import { LoginResponse } from '../../interfaces/LoginResponse';
 import { tap } from 'rxjs';
+import { UserService } from '../user/user-service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,13 +14,18 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
+    private userService: UserService
   ) { }
 
+  // auth.service.ts
   login(data: LoginRequest) {
     return this.http.post<LoginResponse>(`${this.url}/login`, data)
       .pipe(
         tap(res => {
+          // Guardamos el token para las peticiones (usado por el interceptor)
           localStorage.setItem('token', res.token);
+          localStorage.setItem('user', JSON.stringify(res.user));
+          this.userService.loadUserProfile().subscribe();
         })
       );
   }
@@ -27,6 +33,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    this.userService.clearUser();
   }
 
   getToken() {

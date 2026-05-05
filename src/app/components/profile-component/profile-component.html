@@ -1,35 +1,146 @@
-<div class="profile-container" *ngIf="user">
+<div class="dashboard-wrapper" *ngIf="user">
+  <div class="dashboard-container">
 
-  <div class="profile-card">
+    <!-- COLUMNA IZQUIERDA: TU PERFIL ACTUALIZADO -->
+    <aside class="profile-sidebar">
+      <div class="profile-card-gold">
+        <div class="avatar-container">
+          <div class="avatar-circle">
+            {{ user.firstName.charAt(0) }}{{ user.lastName.charAt(0) }}
+          </div>
+          <div class="online-status"></div>
+        </div>
 
-    <div class="avatar">
-      {{ user.firstName.charAt(0) }}{{ user.lastName.charAt(0) }}
-    </div>
+        <div class="user-header">
+          <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+          <p class="username">@{{ user.username }}</p>
+          <span class="role-badge">{{ user.role }}</span>
+        </div>
 
-    <h2>{{ user.firstName }} {{ user.lastName }}</h2>
-    <p class="username">@{{ user.username }}</p>
+        <div class="info-list">
+          <div class="info-item">
+            <span>Email</span>
+            <p>{{ user.email }}</p>
+          </div>
+          <div class="info-item">
+            <span>Teléfono</span>
+            <p>{{ user.phone || 'No registrado' }}</p>
+          </div>
+        </div>
 
-    <div class="info">
-      <div class="item">
-        <span>Email</span>
-        <p>{{ user.email }}</p>
+        <nav class="action-menu">
+          <button class="menu-btn active">👤 Mi Perfil</button>
+          <button class="menu-btn">🔒 Cambiar Contraseña</button>
+          <button class="menu-btn">💳 Mis Pagos</button>
+        </nav>
+
+        <button class="btn-logout-dark" (click)="logout()">
+          Cerrar sesión
+        </button>
       </div>
+    </aside>
 
-      <div class="item">
-        <span>Teléfono</span>
-        <p>{{ user.phone }}</p>
+    <!-- COLUMNA DERECHA: LISTA DE RESERVAS (Datos Ficticios) -->
+    <main class="content-area">
+      <header class="content-header">
+        <h1>Gestión de Reservas</h1>
+        <p>Aquí puedes ver el historial y estado de tus habitaciones.</p>
+      </header>
+
+      <div class="reservations-list">
+
+        <!-- EJEMPLO RESERVA 1 (SUITE) -->
+        <div class="res-item">
+          <div class="res-thumb suite-img">
+            <span class="type-tag">SUITE</span>
+          </div>
+          <div class="res-content">
+            <div class="res-top">
+              <h3>Reserva #7721</h3>
+              <span class="status-pill confirmed">CONFIRMED</span>
+            </div>
+            <div class="res-grid">
+              <div class="grid-cell">
+                <label>Check-In</label>
+                <p>12 May 2026</p>
+              </div>
+              <div class="grid-cell">
+                <label>Check-Out</label>
+                <p>15 May 2026</p>
+              </div>
+              <div class="grid-cell">
+                <label>Total</label>
+                <p class="price-gold">$1,200.00</p>
+              </div>
+            </div>
+            <div class="res-footer">
+              <button class="btn-detail">Ver Detalle</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- EJEMPLO RESERVA 1 (SUITE) -->
+        <div class="res-item">
+          <div class="res-thumb suite-img">
+            <span class="type-tag">SUITE</span>
+          </div>
+          <div class="res-content">
+            <div class="res-top">
+              <h3>Reserva #7721</h3>
+              <span class="status-pill confirmed">CONFIRMED</span>
+            </div>
+            <div class="res-grid">
+              <div class="grid-cell">
+                <label>Check-In</label>
+                <p>12 May 2026</p>
+              </div>
+              <div class="grid-cell">
+                <label>Check-Out</label>
+                <p>15 May 2026</p>
+              </div>
+              <div class="grid-cell">
+                <label>Total</label>
+                <p class="price-gold">$1,200.00</p>
+              </div>
+            </div>
+            <div class="res-footer">
+              <button class="btn-detail">Ver Detalle</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- EJEMPLO RESERVA 2 (DOUBLE) -->
+        <div class="res-item">
+          <div class="res-thumb double-img">
+            <span class="type-tag">DOUBLE</span>
+          </div>
+          <div class="res-content">
+            <div class="res-top">
+              <h3>Reserva #8840</h3>
+              <span class="status-pill pending">PENDING</span>
+            </div>
+            <div class="res-grid">
+              <div class="grid-cell">
+                <label>Check-In</label>
+                <p>20 Jun 2026</p>
+              </div>
+              <div class="grid-cell">
+                <label>Check-Out</label>
+                <p>22 Jun 2026</p>
+              </div>
+              <div class="grid-cell">
+                <label>Total</label>
+                <p class="price-gold">$450.00</p>
+              </div>
+            </div>
+            <div class="res-footer">
+              <button class="btn-detail">Ver Detalle</button>
+            </div>
+          </div>
+        </div>
+
       </div>
-
-      <div class="rol">
-        <span>Rol</span>
-        <p>{{user.role}}</p>
-      </div>
-    </div>
-
-    <button class="btn-logout" (click)="logout()">
-      Cerrar sesión
-    </button>
+    </main>
 
   </div>
-
 </div>

@@ -5,5 +5,6 @@ export interface UserResponse {
   firstName: string;
   lastName: string;
   phone: string;
+  photo:string;
   role: 'ADMIN' | 'USER';
 }

@@ -1,42 +1,274 @@
+/* ===== CONTAINER ===== */
 .container {
-  height: 100vh;
+  overflow: hidden;
+  min-height: 100dvh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #0f172a;
+  padding: 1rem;
+  background: url('/assets/img/wallpaper_login.png') center/cover no-repeat;
 }
 
-.card {
-  background: #1e293b;
-  padding: 2rem;
-  border-radius: 12px;
+/* ===== GLASS CARD ===== */
+.form-login {
+  width: 100%;
+  max-width: 300px;
+  background: transparent;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(201, 169, 110, 0.20);
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+  position: relative;
+
+  /* 🔥 añadido */
+  transition: max-width 0.35s ease;
+}
+
+/* 🔥 añadido: cuando es register */
+.form-login.register-mode {
+  max-width: 520px;
+}
+
+/* ===== SWITCH ===== */
+.form-stack {
+  position: relative;
+  min-height: 520px;
+  /* Centrado vertical del formulario hijo */
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  width: 300px;
+  justify-content: center;
 }
 
-h2 {
-  color: white;
+/* ambos forms */
+.form-stack form {
+  width: 100%;
+  transition: all 0.35s ease;
+}
+
+/* visible */
+.form-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+  position: relative;
+}
+
+/* oculto */
+.form-hidden {
+  opacity: 0;
+  transform: translateY(-10px) scale(0.95);
+  pointer-events: none;
+  position: absolute;
+  /* Cambiamos inset: 0 por estas líneas para mantener el centrado */
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%) scale(0.95);
+}
+
+/* ===== LAYOUT ===== */
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+  width: 100%;
+}
+
+/* ===== LOGO ===== */
+.content-logo {
+  width: 120px;
+}
+
+.content-logo img {
+  width: 100%;
+  object-fit: contain;
+}
+
+/* ===== TEXTOS ===== */
+.card h2 {
+  color: var(--blanco-suave);
+  margin: 0;
+  letter-spacing: 1px;
+  font-size: 1.4rem;
   text-align: center;
 }
 
-input {
-  padding: 10px;
-  border-radius: 8px;
-  border: none;
-  outline: none;
+.card h3 {
+  color: var(--gris-claro);
+  font-weight: 400;
+  font-size: 0.95rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
 }
 
-button {
-  padding: 10px;
+/* ===== INPUTS ===== */
+.card label {
+  width: 100%;
+  position: relative;
+}
+
+.card label svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.card input {
+  width: 100%;
+  padding: 14px 12px 14px 45px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: var(--blanco-suave);
+  outline: none;
+  font-size: 0.95rem;
+  transition: 0.3s;
+}
+
+.card input:focus {
+  border: 1px solid var(--dorado);
+  box-shadow: 0 0 0 2px rgba(201, 169, 110, 0.2);
+}
+
+/* ===== LINKS ===== */
+.as {
+  width: 100%;
+  text-align: end;
+  color: #ffb845;
+  font-size: 0.8rem;
+  text-decoration: underline;
+}
+
+/* ===== BOTÓN ===== */
+.card button {
+  width: 100%;
+  padding: 14px;
+  background: var(--dorado);
+  color: var(--bg-profundo);
   border: none;
   border-radius: 8px;
-  background: #3b82f6;
-  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.card button:hover {
+  background: #ffb845;
+}
+
+/* ===== TEXTO FINAL ===== */
+.not {
+  width: 100%;
+  text-align: center;
+  color: var(--blanco-suave);
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8rem;
+}
+
+.not a {
+  color: var(--dorado);
+  text-decoration: underline;
   cursor: pointer;
 }
 
-button:hover {
-  background: #2563eb;
+/* ===== DESKTOP ===== */
+@media (min-width: 768px) {
+
+  .container {
+    padding: 0;
+  }
+
+  .form-login {
+    max-width: 400px;
+    padding: 2rem;
+  }
+
+  .form-stack {
+    min-height: 560px;
+  }
+
+  .content-logo {
+    width: 160px;
+  }
+
+  .card h2 {
+    font-size: 1.8rem;
+  }
+
+  .card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .as {
+    font-size: 0.9rem;
+  }
+
+  .not {
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* ===== REGISTER GRID ===== */
+.register-card {
+  width: 100%;
+  max-width: 500px;
+  gap: 1rem;
+}
+
+/* 🔥 FIX REAL */
+.register-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* CORREGIDO */
+  gap: 0.8rem;
+}
+
+/* inputs ocupan 2 columnas */
+.register-grid .full {
+  grid-column: span 2;
+}
+
+/* mismos estilos que login */
+.register-grid input {
+  width: 100%;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: var(--blanco-suave);
+  outline: none;
+  font-size: 0.95rem;
+  transition: 0.3s;
+}
+
+.register-grid input:focus {
+  border: 1px solid var(--dorado);
+  box-shadow: 0 0 0 2px rgba(201, 169, 110, 0.2);
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 480px) {
+
+  .form-login.register-mode {
+    max-width: 300px; /* vuelve a mobile */
+  }
+
+  .register-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .register-grid .full {
+    grid-column: span 1;
+  }
 }

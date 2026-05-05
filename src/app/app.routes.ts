@@ -29,7 +29,7 @@ export const routes: Routes = [
 
   // 🔒 PRIVADO (requiere login)
   {
-    path: 'app', // mejor nombre que "resert"
+    path: 'page', // mejor nombre que "resert"
     component: LayoutComponent,
     canActivate: [authGuard],
     children: [
@@ -49,10 +49,9 @@ export const routes: Routes = [
     component: LayoutComponent,
     canActivate: [authGuard, adminGuard],
     children: [
-      {
-        path: 'panel',
-        component: AdminPanel
-      }
+      { path: '', redirectTo: 'panel', pathMatch: 'full' },
+      { path: 'panel', component: AdminPanel },
+
     ]
   },
 

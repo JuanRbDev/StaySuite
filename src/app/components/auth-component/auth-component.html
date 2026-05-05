@@ -1,13 +1,87 @@
 <div class="container">
-  <form (ngSubmit)="onLogin()" class="card">
 
-    <h2>Iniciar sesión</h2>
+  <div class="form-login" [class.register-mode]="!isLogin">
 
-    <input type="email" placeholder="Email" [(ngModel)]="email" name="email" required />
+    <div class="form-stack">
 
-    <input type="password" placeholder="Contraseña" [(ngModel)]="password" name="password" required />
+      <!-- ================= LOGIN ================= -->
+      <form (ngSubmit)="onLogin()" class="card"
+            [class.form-visible]="isLogin"
+            [class.form-hidden]="!isLogin">
 
-    <button type="submit">Entrar</button>
+        <div class="content-logo">
+          <img src="/assets/img/logo_1.png" alt="">
+        </div>
 
-  </form>
+        <h2>Bienvenido de nuevo</h2>
+        <h3>Inicia sesión en tu cuenta</h3>
+
+        <label for="email">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="#ca933c" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="8" r="5" fill="#ca933c"/><path d="M20 21a8 8 0 1 0-16 0"/><path fill="#ca933c" d="M12 13a8 8 0 0 0-8 8h16a8 8 0 0 0-8-8"/></g></svg>
+          <input id="email" type="email" placeholder="Correo electrónico"
+                 [(ngModel)]="email" name="email" required />
+        </label>
+
+        <label for="password">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#ca933c" d="M17 9V7c0-2.8-2.2-5-5-5S7 4.2 7 7v2c-1.7 0-3 1.3-3 3v7c0 1.7 1.3 3 3 3h10c1.7 0 3-1.3 3-3v-7c0-1.7-1.3-3-3-3M9 7c0-1.7 1.3-3 3-3s3 1.3 3 3v2H9zm4.1 8.5l-.1.1V17c0 .6-.4 1-1 1s-1-.4-1-1v-1.4c-.6-.6-.7-1.5-.1-2.1s1.5-.7 2.1-.1c.6.5.7 1.5.1 2.1"/></svg>
+          <input id="password" type="password" placeholder="Contraseña"
+                 [(ngModel)]="password" name="password" required />
+        </label>
+
+        <a class="as">¿Olvidaste tu contraseña?</a>
+
+        <button type="submit">Entrar</button>
+
+        <p class="not">
+          ¿No tienes cuenta?
+          <a (click)="toggle()">Crear cuenta</a>
+        </p>
+
+      </form>
+
+
+      <!-- ================= REGISTER ================= -->
+      <form class="card register-card"
+            [class.form-visible]="!isLogin"
+            [class.form-hidden]="isLogin">
+
+        <div class="content-logo">
+          <img src="/assets/img/logo_1.png" alt="">
+        </div>
+
+        <h2>Crear cuenta</h2>
+        <h3>Completa tus datos</h3>
+
+        <div class="register-grid">
+
+          <input type="text" placeholder="Nombre" [(ngModel)]="register.firstName" name="firstName" />
+          <input type="text" placeholder="Apellido" [(ngModel)]="register.lastName" name="lastName" />
+
+          <input type="text" placeholder="Username" [(ngModel)]="register.username" name="username" />
+          <input type="text" placeholder="DNI" [(ngModel)]="register.dni" name="dni" />
+
+          <input class="full" type="email" placeholder="Correo electrónico"
+                 [(ngModel)]="register.email" name="emailReg" />
+
+          <input class="full" type="password" placeholder="Contraseña"
+                 [(ngModel)]="register.password" name="passwordReg" />
+
+          <input class="full" type="text" placeholder="Teléfono"
+                 [(ngModel)]="register.phone" name="phone" />
+
+        </div>
+
+        <button type="button" (click)="onRegister()">Crear cuenta</button>
+
+        <p class="not">
+          ¿Ya tienes cuenta?
+          <a (click)="toggle()">Iniciar sesión</a>
+        </p>
+
+      </form>
+
+    </div>
+
+  </div>
+
 </div>

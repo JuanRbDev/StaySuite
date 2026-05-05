@@ -2,6 +2,7 @@ import { Component, signal, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { UserService } from './service/user/user-service';
 
+
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet],
@@ -15,10 +16,12 @@ export class App implements OnInit {
 
   currentUser: any = null; // 👈 IMPORTANTE
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService
+  ) { }
 
   ngOnInit(): void {
-    this.loadUserFromStorage();
+    this.userService.loadUserProfile();
   }
 
   loadUserFromStorage() {
